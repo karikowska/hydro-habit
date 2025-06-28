@@ -1,0 +1,26 @@
+# Secrets and config
+__pycache__/
+*.pyc
+*.pyo
+__pycaches/
+*.pyd
+.venv/
+.env
+.env.local
+config/secrets.yml
+*.key
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
