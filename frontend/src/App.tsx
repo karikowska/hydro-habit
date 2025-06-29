@@ -10,6 +10,7 @@ import { useHydration } from './hooks/useHydration'; // Ensure useHydration is i
 import AuthForms from './components/AuthForms';
 import { useAuth } from './hooks/useAuth';
 import { useFetchEncouragement } from './api/useFetchEncouragement';
+import { motion } from 'framer-motion';
 
 // This component contains the core UI that needs hydration state AND authentication state
 const HydroHabitAppContent: React.FC = () => {
@@ -81,11 +82,8 @@ const HydroHabitAppContent: React.FC = () => {
         px: { xs: 2, sm: 3 },
       }}
     >
-      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h3" sx={{ flexGrow: 1, textAlign: 'center' }}>
-          HydroHabit
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Box sx={{ width: '100%', mb: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 1 }}>
           <Typography variant="body1">
             👋 Hello, {currentUser?.username || 'Guest'}!
           </Typography>
@@ -93,6 +91,15 @@ const HydroHabitAppContent: React.FC = () => {
             Logout
           </Button>
         </Box>
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, type: 'spring', stiffness: 80 }}
+        >
+          <Typography variant="h3" sx={{ textAlign: 'center', fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, }}>
+            HydroHomie
+          </Typography>
+        </motion.div>
       </Box>
 
       <Box sx={{ minHeight: 80, display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 4, mt: 2, textAlign: 'center', maxWidth: '80%' }}>
@@ -101,9 +108,16 @@ const HydroHabitAppContent: React.FC = () => {
         ) : promptError ? (
           <Alert severity="error" sx={{ width: '100%' }}>{promptError}</Alert>
         ) : (
-          <Typography variant="h6" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-            "{hydrationPrompt}"
-          </Typography>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            style={{ width: '100%' }}
+          >
+            <Typography variant="h6" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+              "{hydrationPrompt}"
+            </Typography>
+          </motion.div>
         )}
       </Box>
 
@@ -114,15 +128,17 @@ const HydroHabitAppContent: React.FC = () => {
       <WaterControls />
 
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
-        <Button
-          variant="contained"
-          size="large"
-          color="secondary"
-          onClick={handleDrink}
-          disabled={isDrinkButtonDisabled}
-        >
-          Drink Water! ({drinkAmountPerClick}ml)
-        </Button>
+        <motion.div whileTap={{ scale: 0.93 }} whileHover={{ scale: 1.04 }} style={{ display: 'inline-block' }}>
+          <Button
+            variant="contained"
+            size="large"
+            color="secondary"
+            onClick={handleDrink}
+            disabled={isDrinkButtonDisabled}
+          >
+            Drink Water! ({drinkAmountPerClick}ml)
+          </Button>
+        </motion.div>
 
         <IconButton
           aria-label="reset progress"

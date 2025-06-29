@@ -42,4 +42,5 @@ export interface UserHydrationData {
   goalInput?: string;
   drinkAmountInput?: string;
   createdAt?: Date;
+  sipsTaken?: number;
 }

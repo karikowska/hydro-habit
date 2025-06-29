@@ -2,7 +2,17 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 import openai
+import os
+from dotenv import load_dotenv
 from external_api import get_location, get_weather
+
+load_dotenv()  # Load environment variables from .env file
+
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("No OPENAI_API_KEY found in environment variables. Please add it to your .env file.")
+
+openai.api_key = api_key
 
 app = FastAPI()
 
@@ -46,7 +56,7 @@ async def get_encouragement():
     If the user hasn't sipped in a while, make it sound like a friendly nudge rather than a command.
 
     Avoid being robotic. Use some emojis if appropriate, not too many. Make it sound like a human coach who cares about the user’s health and mood. No hashtags.
-    Keep it concise, around 2-3 sentences.
+    Keep it concise, around 1-2 sentences.
     """
     
     try:

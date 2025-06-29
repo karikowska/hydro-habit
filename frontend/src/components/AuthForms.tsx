@@ -16,6 +16,7 @@ import { useAuth } from '../hooks/useAuth';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
+import { motion } from 'framer-motion';
 
 const AuthForms: React.FC = () => {
   const { login, register } = useAuth();
@@ -77,102 +78,108 @@ const AuthForms: React.FC = () => {
   };
 
   return (
-    <Paper elevation={6} sx={{ p: 4, borderRadius: 2, maxWidth: 450, width: '100%' }}>
-      <Typography variant="h5" align="center" gutterBottom sx={{ mb: 3 }}>
-        💧 HydroHabit 💧
-      </Typography>
-      <Typography variant="subtitle1" align="center" sx={{ mb: 3 }}>
-        Welcome! The only app where more water equals less effort!
-      </Typography>
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, type: 'spring', stiffness: 80 }}
+    >
+      <Paper elevation={6} sx={{ p: 4, borderRadius: 2, maxWidth: 450, width: '100%' }}>
+        <Typography variant="h5" align="center" gutterBottom sx={{ mb: 3 }}>
+          💧 HydroHabit 💧
+        </Typography>
+        <Typography variant="subtitle1" align="center" sx={{ mb: 3 }}>
+          Welcome! The only app where more water equals less effort!
+        </Typography>
 
-      {/* Tabs for Sign Up / Sign In */}
-      <Tabs
-        value={tabIndex}
-        onChange={(_, newValue) => setTabIndex(newValue)}
-        centered
-        sx={{ mb: 3 }}
-        aria-label="auth tabs"
-      >
-        <Tab label="Sign Up" />
-        <Tab label="Sign In" />
-      </Tabs>
+        {/* Tabs for Sign Up / Sign In */}
+        <Tabs
+          value={tabIndex}
+          onChange={(_, newValue) => setTabIndex(newValue)}
+          centered
+          sx={{ mb: 3 }}
+          aria-label="auth tabs"
+        >
+          <Tab label="Sign Up" />
+          <Tab label="Sign In" />
+        </Tabs>
 
-      <Typography variant="h6" align="center" gutterBottom>
-        {isNewUser ? '📝 New User Registration' : '🔑 Returning User Login'}
-      </Typography>
+        <Typography variant="h6" align="center" gutterBottom>
+          {isNewUser ? '📝 New User Registration' : '🔑 Returning User Login'}
+        </Typography>
 
-      <Box component="form" onSubmit={handleAuth} sx={{ mt: 2 }}>
-        <TextField
-          label="Username"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter your username"
-          autoComplete="username"
-        />
-
-        {!isNewUser && (
+        <Box component="form" onSubmit={handleAuth} sx={{ mt: 2 }}>
           <TextField
-            label="Login String"
+            label="Username"
             variant="outlined"
             fullWidth
             margin="normal"
-            type="password"
-            value={loginString}
-            onChange={(e) => setLoginString(e.target.value)}
-            placeholder="Enter your login string"
-            autoComplete="current-password"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your username"
+            autoComplete="username"
           />
-        )}
 
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          fullWidth
-          size="large"
-          sx={{ mt: 3, mb: 2 }}
-          disabled={isLoading}
-        >
-          {isLoading ? 'Processing...' : isNewUser ? 'Get My Login String!' : 'Login'}
-        </Button>
+          {!isNewUser && (
+            <TextField
+              label="Login String"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              type="password"
+              value={loginString}
+              onChange={(e) => setLoginString(e.target.value)}
+              placeholder="Enter your login string"
+              autoComplete="current-password"
+            />
+          )}
 
-        {message && (
-          <Alert severity={message.type} sx={{ mt: 2 }}>
-            {message.text}
-          </Alert>
-        )}
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            size="large"
+            sx={{ mt: 3, mb: 2 }}
+            disabled={isLoading}
+          >
+            {isLoading ? 'Processing...' : isNewUser ? 'Get My Login String!' : 'Login'}
+          </Button>
 
-        {generatedLoginString && (
-          <Box sx={{ mt: 3, p: 2, bgcolor: 'warning.light', borderRadius: 1 }}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: 1 }}>
-              🎫 Your Login String:
-              <Tooltip title={copied ? 'Copied!' : 'Copy to clipboard'} placement="top">
-                <IconButton size="small" onClick={handleCopyLoginString} aria-label="copy login string">
-                  <ContentCopyIcon fontSize="small" color={copied ? 'success' : 'inherit'} />
-                </IconButton>
-              </Tooltip>
-            </Typography>
-            <Typography sx={{ wordBreak: 'break-all', mt: 1, p: 1, bgcolor: 'background.paper', borderRadius: 0.5 }}>
-              {generatedLoginString}
-            </Typography>
-            <Typography variant="caption" sx={{ mt: 1, display: 'block' }}>
-              ⚠️ **Save this login string immediately!** You'll need it to access your account.
-            </Typography>
-          </Box>
-        )}
-      </Box>
+          {message && (
+            <Alert severity={message.type} sx={{ mt: 2 }}>
+              {message.text}
+            </Alert>
+          )}
 
-      <Divider sx={{ my: 3 }} />
+          {generatedLoginString && (
+            <Box sx={{ mt: 3, p: 2, bgcolor: 'warning.light', borderRadius: 1 }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: 1 }}>
+                🎫 Your Login String:
+                <Tooltip title={copied ? 'Copied!' : 'Copy to clipboard'} placement="top">
+                  <IconButton size="small" onClick={handleCopyLoginString} aria-label="copy login string">
+                    <ContentCopyIcon fontSize="small" color={copied ? 'success' : 'inherit'} />
+                  </IconButton>
+                </Tooltip>
+              </Typography>
+              <Typography sx={{ wordBreak: 'break-all', mt: 1, p: 1, bgcolor: 'background.paper', borderRadius: 0.5 }}>
+                {generatedLoginString}
+              </Typography>
+              <Typography variant="caption" sx={{ mt: 1, display: 'block' }}>
+                ⚠️ **Save this login string immediately!** You'll need it to access your account.
+              </Typography>
+            </Box>
+          )}
+        </Box>
 
-      {/* <Typography variant="body2" color="text.secondary" align="center">
-        **ℹ️ Demo Information:** This is a frontend-only demonstration.
-        User data is stored in your browser's local storage and is NOT secure for a real application.
-        A real app needs a backend for secure authentication and data storage.
-      </Typography> */}
-    </Paper>
+        <Divider sx={{ my: 3 }} />
+
+        {/* <Typography variant="body2" color="text.secondary" align="center">
+          **ℹ️ Demo Information:** This is a frontend-only demonstration.
+          User data is stored in your browser's local storage and is NOT secure for a real application.
+          A real app needs a backend for secure authentication and data storage.
+        </Typography> */}
+      </Paper>
+    </motion.div>
   );
 };
 

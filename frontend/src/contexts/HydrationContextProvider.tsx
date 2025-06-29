@@ -20,6 +20,7 @@ export const HydrationProvider: React.FC<HydrationProviderProps> = ({ children }
         goalInput: '2000',
         drinkAmountMl: 250,
         drinkAmountInput: '250',
+        sipsTaken: 0,
     });
 
     // Destructure for easier use
@@ -74,6 +75,7 @@ export const HydrationProvider: React.FC<HydrationProviderProps> = ({ children }
                     goalInput: String(userData.dailyGoalMl) || '2000',
                     drinkAmountMl: userData.drinkAmountMl || 250,
                     drinkAmountInput: String(userData.drinkAmountMl) || '250',
+                    sipsTaken: userData.sipsTaken || 0,
                 };
                 // console.log(`HydrationProvider: Found and loaded data candidate for ${currentUser.username}:`, loadedHydrationData);
             } else {
@@ -85,6 +87,7 @@ export const HydrationProvider: React.FC<HydrationProviderProps> = ({ children }
                     goalInput: '2000',
                     drinkAmountMl: 250,
                     drinkAmountInput: '250',
+                    sipsTaken: 0,
                 };
                 // console.log(`HydrationProvider: No existing data for ${currentUser.username}. Setting defaults:`, loadedHydrationData);
             }
@@ -97,6 +100,7 @@ export const HydrationProvider: React.FC<HydrationProviderProps> = ({ children }
                 goalInput: '2000',
                 drinkAmountMl: 250,
                 drinkAmountInput: '250',
+                sipsTaken: 0,
             };
         }
 
@@ -119,6 +123,7 @@ export const HydrationProvider: React.FC<HydrationProviderProps> = ({ children }
                 currentWaterMl: hydrationState.currentWaterMl,
                 dailyGoalMl: hydrationState.dailyGoalMl,
                 drinkAmountMl: hydrationState.drinkAmountMl,
+                sipsTaken: hydrationState.sipsTaken,
             };
 
             const allHydrationData = getAllHydrationData(); // Get the latest full list
@@ -160,7 +165,8 @@ export const HydrationProvider: React.FC<HydrationProviderProps> = ({ children }
     const handleDrink = () => {
         setHydrationState(prev => ({
             ...prev,
-            currentWaterMl: Math.min(dailyGoalMl, prev.currentWaterMl + drinkAmountMl)
+            currentWaterMl: Math.min(dailyGoalMl, prev.currentWaterMl + drinkAmountMl),
+            sipsTaken: (prev.sipsTaken || 0) + 1,
         }));
     };
 
@@ -235,7 +241,7 @@ export const HydrationProvider: React.FC<HydrationProviderProps> = ({ children }
     };
 
     const handleResetProgress = () => {
-        setHydrationState(prev => ({ ...prev, currentWaterMl: 0 }));
+        setHydrationState(prev => ({ ...prev, currentWaterMl: 0, sipsTaken: 0 }));
         setGoalVsDrinkAmountError('');
     };
 
