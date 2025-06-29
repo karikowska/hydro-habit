@@ -13,7 +13,7 @@ import { useFetchEncouragement } from './api/useFetchEncouragement';
 import { motion } from 'framer-motion';
 
 // This component contains the core UI that needs hydration state AND authentication state
-const HydroHabitAppContent: React.FC = () => {
+const HydroHomieAppContent: React.FC = () => {
   const {
     hydrationState,
     fillPercentage,
@@ -160,14 +160,14 @@ const HydroHabitAppContent: React.FC = () => {
   );
 };
 
-// The main App component wraps the HydroHabitAppContent with all necessary Providers
+// The main App component wraps the HydroHomieAppContent with all necessary Providers
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AuthProvider>
         <HydrationProvider>
-          <HydroHabitAppContent />
+          <HydroHomieAppContent />
         </HydrationProvider>
       </AuthProvider>
     </ThemeProvider>

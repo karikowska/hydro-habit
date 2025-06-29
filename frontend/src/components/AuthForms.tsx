@@ -85,7 +85,7 @@ const AuthForms: React.FC = () => {
     >
       <Paper elevation={6} sx={{ p: 4, borderRadius: 2, maxWidth: 450, width: '100%' }}>
         <Typography variant="h5" align="center" gutterBottom sx={{ mb: 3 }}>
-          💧 HydroHabit 💧
+          💧 HydroHomie 💧
         </Typography>
         <Typography variant="subtitle1" align="center" sx={{ mb: 3 }}>
           Welcome! The only app where more water equals less effort!

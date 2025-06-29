@@ -9,7 +9,7 @@ interface HydrationProviderProps {
 }
 
 // Define the localStorage key for ALL hydration data
-const ALL_HYDRATION_DATA_KEY = 'hydrohabit_all_users_hydration_data';
+const ALL_HYDRATION_DATA_KEY = 'HydroHomie_all_users_hydration_data';
 
 export const HydrationProvider: React.FC<HydrationProviderProps> = ({ children }) => {
     const { currentUser, isAuthenticated } = useAuth(); // Get current user from AuthContext
