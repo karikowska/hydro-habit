@@ -38,9 +38,12 @@ Follow these steps to get your development environment set up.
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd HyrdoHomie
+git clone <https://github.com/karikowska/hydro-homie.git>
 ```
+
+The targeted branch is ```frontend-with-backend```. If you are in the targeted branch, please 
+1. ```git fetch origin```
+2. ```git checkout frontend-with-backend```
 
 ### 2. Backend Setup
 
