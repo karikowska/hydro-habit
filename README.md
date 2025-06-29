@@ -88,7 +88,7 @@ The targeted branch is ```main```. If you are not in the targeted branch, please
     Create a file named `.env` in the `frontend` directory and add your BASE_URL API key:
     ```
     BASE_URL="http://localhost:8000" (adjust the port according to your backend service)
-   ```
+    ```
 
 ### 3. Frontend Setup
 
@@ -120,4 +120,4 @@ The targeted branch is ```main```. If you are not in the targeted branch, please
 
 ---
 
-Enjoy staying hydrated with HyrdoHomie!
+Enjoy staying hydrated with HydroHomie!
