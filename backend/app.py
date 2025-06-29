@@ -1,0 +1,1 @@
+# start cmd: uvicorn gpt_encourage:app --reload
