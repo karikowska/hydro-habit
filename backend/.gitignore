@@ -4,7 +4,7 @@ __pycache__/
 *.pyo
 __pycaches/
 *.pyd
-.venv/
+venv/
 .env
 .env.local
 config/secrets.yml
