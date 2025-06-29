@@ -1,5 +1,7 @@
 # HydroHomie
 
+This is Infinite Loop's entry for the HuddleHive 2025 Hackathon!
+
 Welcome to HydroHomie! This is a smart hydration tracking application designed to help you build and maintain healthy water-drinking habits. It provides personalized, AI-powered encouragement to keep you motivated and on track with your hydration goals, and a healthy dose of competitiveness and cooperative habit-building with your friends.
 
 ## Features
