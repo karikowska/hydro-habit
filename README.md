@@ -41,9 +41,9 @@ Follow these steps to get your development environment set up.
 git clone <https://github.com/karikowska/hydro-homie.git>
 ```
 
-The targeted branch is ```frontend-with-backend```. If you are in the targeted branch, please 
+The targeted branch is ```main```. If you are not in the targeted branch, please 
 1. ```git fetch origin```
-2. ```git checkout frontend-with-backend```
+2. ```git checkout main```
 
 ### 2. Backend Setup
 
